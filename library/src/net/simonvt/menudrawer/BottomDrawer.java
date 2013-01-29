@@ -162,6 +162,7 @@ public class BottomDrawer extends VerticalDrawer {
             offsetMenu(offsetPixels);
             invalidate();
         }
+        notifyContentOffsetChange(offsetPixels);
     }
 
     //////////////////////////////////////////////////////////////////////

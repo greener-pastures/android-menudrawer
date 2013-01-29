@@ -150,6 +150,7 @@ public class LeftDrawer extends HorizontalDrawer {
             offsetMenu(offsetPixels);
             invalidate();
         }
+        notifyContentOffsetChange(offsetPixels);
     }
 
     //////////////////////////////////////////////////////////////////////

@@ -222,6 +222,11 @@ public abstract class StaticDrawer extends MenuDrawer {
     }
 
     @Override
+    public int getMenuSize() {
+        return mMenuSize;
+    }
+
+    @Override
     public void setOffsetMenuEnabled(boolean offsetMenu) {
     }
 

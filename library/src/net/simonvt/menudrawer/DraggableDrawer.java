@@ -224,6 +224,11 @@ public abstract class DraggableDrawer extends MenuDrawer {
         invalidate();
     }
 
+    @Override
+    public int getMenuSize() {
+        return mMenuSize;
+    }
+
     public void setOffsetMenuEnabled(boolean offsetMenu) {
         if (offsetMenu != mOffsetMenu) {
             mOffsetMenu = offsetMenu;

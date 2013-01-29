@@ -164,6 +164,7 @@ public class RightDrawer extends HorizontalDrawer {
             offsetMenu(offsetPixels);
             invalidate();
         }
+        notifyContentOffsetChange(offsetPixels);
     }
 
     //////////////////////////////////////////////////////////////////////

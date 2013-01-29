@@ -32,6 +32,19 @@ public abstract class MenuDrawer extends ViewGroup {
     }
 
     /**
+     * Callback interface for receiving ongoing changes during drawer opening/closing.
+     */
+    public interface OnContentOffsetChangeListener {
+
+        /**
+         * Called during opening/closing of the drawer.
+         *
+         * @param offsetPixels The number of pixels the content is currently offset.
+         */
+        void onContentOffsetChange(int offsetPixels);
+    }
+
+    /**
      * Tag used when logging.
      */
     private static final String TAG = "MenuDrawer";
@@ -210,6 +223,11 @@ public abstract class MenuDrawer extends ViewGroup {
     private OnDrawerStateChangeListener mOnDrawerStateChangeListener;
 
     /**
+     * Listener used to dispatch content offset events.
+     */
+    private OnContentOffsetChangeListener mOnContentOffsetChangeListener;
+
+    /**
      * Touch mode for the Drawer.
      * Possible values are {@link #TOUCH_MODE_NONE}, {@link #TOUCH_MODE_BEZEL} or {@link #TOUCH_MODE_FULLSCREEN}
      * Default: {@link #TOUCH_MODE_BEZEL}
@@ -363,6 +381,11 @@ public abstract class MenuDrawer extends ViewGroup {
         menuDrawer.mContentContainer.addView(decorChild, decorChild.getLayoutParams());
     }
 
+    protected void notifyContentOffsetChange(int offsetPixels) {
+        if (mOnContentOffsetChangeListener != null)
+            mOnContentOffsetChangeListener.onContentOffsetChange(offsetPixels);
+    }
+
     MenuDrawer(Activity activity, int dragMode) {
         this(activity);
 
@@ -508,6 +531,11 @@ public abstract class MenuDrawer extends ViewGroup {
     public abstract void setMenuSize(int size);
 
     /**
+     * @return The size of the menu drawer when open.
+     */
+    public abstract int getMenuSize();
+
+    /**
      * Set the active view.
      * If the mdActiveIndicator attribute is set, this View will have the indicator drawn next to it.
      *
@@ -556,6 +584,15 @@ public abstract class MenuDrawer extends ViewGroup {
      */
     public void setOnDrawerStateChangeListener(OnDrawerStateChangeListener listener) {
         mOnDrawerStateChangeListener = listener;
+    }
+
+    /**
+     * Register a callback to be invoked when the content is offset.
+     *
+     * @param listener The callback that will run.
+     */
+    public void setOnContentOffsetChangeListener(OnContentOffsetChangeListener listener) {
+        mOnContentOffsetChangeListener = listener;
     }
 
     /**

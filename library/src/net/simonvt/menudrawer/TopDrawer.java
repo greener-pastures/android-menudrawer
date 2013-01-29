@@ -154,6 +154,7 @@ public class TopDrawer extends VerticalDrawer {
             offsetMenu(offsetPixels);
             invalidate();
         }
+        notifyContentOffsetChange(offsetPixels);
     }
 
     //////////////////////////////////////////////////////////////////////
